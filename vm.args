@@ -45,6 +45,3 @@
 
 # Comment this line out to enable the interactive Erlang shell on startup
 +Bd -noinput
-
-# Nodename of the CouchDB instance
-#COUCHDB_NODE_NAME
