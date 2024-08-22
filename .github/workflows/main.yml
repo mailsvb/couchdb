@@ -32,7 +32,6 @@ jobs:
           tags: |
             type=raw,value=latest
             type=raw,value=${{ vars.COUCHDB_VERSION }}-${{ vars.RELEASE_VERSION }}-tumbleweed
-            type=sha
 
       - name: Setup Docker Buildx environment
         uses: docker/setup-buildx-action@v3
