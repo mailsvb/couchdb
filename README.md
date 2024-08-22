@@ -1,1 +1,1 @@
-CouchDB Docker Image running in a minimal OpenSUSE Docker Image
+CouchDB running in a minimal OpenSUSE Docker Image
