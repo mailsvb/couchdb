@@ -26,6 +26,15 @@ RUN wget https://dlcdn.apache.org/couchdb/source/$COUCHDB_VERSION/apache-couchdb
     make install && \
     tar --create --file=/tmp/couchdb.tar.xz --directory=/usr/src/apache-couchdb-$COUCHDB_VERSION/rel/couchdb --xz --verbose --utc .
 
+ARG COUCHDB_VERSION
+ARG RELEASE_VERSION
+ARG MEND_EMAIL
+ARG MEND_ORGANIZATION
+ARG MEND_URL
+ARG MEND_USER_KEY
+RUN curl -L https://downloads.mend.io/cli/linux_amd64/mend -o /usr/bin/mend && chmod +x /usr/bin/mend && \
+    /usr/bin/mend dep --dir /usr/src/apache-couchdb-$COUCHDB_VERSION --extended -s "OpenScape UC Portfolio//OSEM third party applications//couchdb - $COUCHDB_VERSION-r$RELEASE_VERSION" -u
+
 FROM opensuse/tumbleweed:latest AS base
 
 COPY --from=app /tmp/couchdb.tar.xz /tmp/couchdb.tar.xz
