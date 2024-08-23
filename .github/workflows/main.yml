@@ -73,6 +73,7 @@ jobs:
             ERLANG_OTP_VERSION=${{ github.event.inputs.erlang }}
             COUCHDB_VERSION=${{ github.event.inputs.couchdb }}
             FAUXTON_VERSION=${{ github.event.inputs.fauxton }}
+            RELEASE_VERSION=${{ github.event.inputs.release }}
             MEND_EMAIL=${{ secrets.MEND_EMAIL }}
             MEND_ORGANIZATION=${{ secrets.MEND_ORGANIZATION }}
             MEND_URL=${{ secrets.MEND_URL }}
