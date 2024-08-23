@@ -14,10 +14,14 @@ RUN wget https://github.com/erlang/otp/releases/download/OTP-$ERLANG_OTP_VERSION
     make install
 
 ARG COUCHDB_VERSION
+ARG FAUXTON_VERSION
 RUN wget https://dlcdn.apache.org/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz && \
     tar -xvf apache-couchdb-$COUCHDB_VERSION.tar.gz && \
     cd apache-couchdb-$COUCHDB_VERSION && \
     ./configure --spidermonkey-version 78 && \
+    rm -Rf src/fauxton/* && \
+    rm -Rf src/fauxton/.* && \
+    curl -L https://github.com/apache/couchdb-fauxton/archive/refs/tags/v$FAUXTON_VERSION.tar.gz | tar --directory src/fauxton --strip-components 1 -zxvf - && \
     make && \
     make install && \
     tar --create --file=/tmp/couchdb.tar.xz --directory=/usr/src/apache-couchdb-$COUCHDB_VERSION/rel/couchdb --xz --verbose --utc .
