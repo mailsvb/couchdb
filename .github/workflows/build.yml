@@ -55,6 +55,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          provenance: false
           build-args: |
             ERLANG_OTP_VERSION=${{ github.event.inputs.erlang }}
             COUCHDB_VERSION=${{ github.event.inputs.couchdb }}
@@ -79,5 +80,5 @@ jobs:
           MEND_USER_KEY: ${{ secrets.MEND_USER_KEY }}
         run: |
           curl -L https://downloads.mend.io/cli/linux_amd64/mend -o /tmp/mend && chmod +x /tmp/mend && \
-          /tmp/mend image $IMAGE $COUCHDB_VERSION -s "OpenScape UC Portfolio//OSEM third party applications//osem-couchdb-docker-image - $COUCHDB_VERSION-r$RELEASE_VERSION-tumbleweed"
+          /tmp/mend image $IMAGE -s "OpenScape UC Portfolio//OSEM third party applications//osem-couchdb-docker-image - $COUCHDB_VERSION-r$RELEASE_VERSION-tumbleweed"
         working-directory: /tmp
