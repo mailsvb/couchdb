@@ -79,5 +79,5 @@ jobs:
           MEND_USER_KEY: ${{ secrets.MEND_USER_KEY }}
         run: |
           curl -L https://downloads.mend.io/cli/linux_amd64/mend -o /tmp/mend && chmod +x /tmp/mend && \
-          /tmp/mend image $IMAGE $COUCHDB_VERSION --extended -s "OpenScape UC Portfolio//OSEM third party applications//osem-couchdb-docker-image - $COUCHDB_VERSION-r$RELEASE_VERSION-tumbleweed" -u
+          /tmp/mend image $IMAGE $COUCHDB_VERSION -s "OpenScape UC Portfolio//OSEM third party applications//osem-couchdb-docker-image - $COUCHDB_VERSION-r$RELEASE_VERSION-tumbleweed"
         working-directory: /tmp
