@@ -67,3 +67,17 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Scan Docker Image
+        env:
+          IMAGE: ghcr.io/${{ github.repository }}:latest
+          COUCHDB_VERSION: ${{ github.event.inputs.couchdb }}
+          RELEASE_VERSION: ${{ github.event.inputs.release }}
+          MEND_EMAIL: ${{ secrets.MEND_EMAIL }}
+          MEND_ORGANIZATION: ${{ secrets.MEND_ORGANIZATION }}
+          MEND_URL: ${{ secrets.MEND_URL }}
+          MEND_USER_KEY: ${{ secrets.MEND_USER_KEY }}
+        run: |
+          curl -L https://downloads.mend.io/cli/linux_amd64/mend -o /tmp/mend && chmod +x /tmp/mend && \
+          /tmp/mend image $IMAGE $COUCHDB_VERSION --extended -s "OpenScape UC Portfolio//OSEM third party applications//osem-couchdb-docker-image - $COUCHDB_VERSION-r$RELEASE_VERSION-tumbleweed" -u
+        working-directory: /tmp
