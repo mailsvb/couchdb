@@ -5,7 +5,7 @@ on:
     inputs:
       release:
         type: choice
-        description: Select Erlang OTP version
+        description: Select release version
         options:
         - "0"
         - "1"
