@@ -67,9 +67,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Delete Deployments
-        uses: strumwolf/delete-deployment-environment@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          onlyRemoveDeployments: true
