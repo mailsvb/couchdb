@@ -104,5 +104,7 @@ jobs:
             - CouchDB: ${{ github.event.inputs.couchdb }}
             - Erlang OTP: ${{ github.event.inputs.erlang }}
             - Fauxton: ${{ github.event.inputs.fauxton }}
+
+            docker run -dit ghcr.io/${{ github.repository }}:${{ github.event.inputs.couchdb }}-r${{ github.event.inputs.release }}-tumbleweed
           draft: false
           prerelease: false
