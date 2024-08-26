@@ -80,7 +80,7 @@ jobs:
 
       - name: Scan Docker Image
         env:
-          IMAGE: ${{ steps.meta.outputs.tags[0] }}
+          IMAGE: ghcr.io/${{ github.repository }}:${{ github.event.inputs.couchdb }}-r${{ github.event.inputs.release }}-tumbleweed
           COUCHDB_VERSION: ${{ github.event.inputs.couchdb }}
           RELEASE_VERSION: ${{ github.event.inputs.release }}
           MEND_EMAIL: ${{ secrets.MEND_EMAIL }}
