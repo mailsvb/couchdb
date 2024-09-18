@@ -7,7 +7,7 @@ Building CouchDB from scratch using Erlang OTP and Fauxton sources. Everything p
 
 You can run the image via Docker
 ```
-docker run -dit ghcr.io/svenbeisiegel/couchdb:3.3.3-r0-tumbleweed
+docker run -dit ghcr.io/de-muc-ucc-osem/couchdb:3.3.3-r0-tumbleweed
 ```
 ## Configuration
 
