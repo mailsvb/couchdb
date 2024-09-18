@@ -89,22 +89,18 @@ jobs:
           MEND_USER_KEY: ${{ secrets.MEND_USER_KEY }}
         run: |
           curl -L https://downloads.mend.io/cli/linux_amd64/mend -o /tmp/mend && chmod +x /tmp/mend && \
-          /tmp/mend image $IMAGE -s "OpenScape UC Portfolio//OSEM third party applications//couchdb-osem-docker-image - $COUCHDB_VERSION-r$RELEASE_VERSION-tumbleweed"
+          /tmp/mend image ${IMAGE,,} -s "OpenScape UC Portfolio//OSEM third party applications//couchdb-osem-docker-image - $COUCHDB_VERSION-r$RELEASE_VERSION-tumbleweed"
         working-directory: /tmp
 
-      - name: Create a Release
-        uses: actions/create-release@v1
+      - name: Create a release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.event.inputs.couchdb }}-r${{ github.event.inputs.release }}
-          release_name: CouchDB ${{ github.event.inputs.couchdb }}-r${{ github.event.inputs.release }}-tumbleweed
-          body: |
-            CouchDB build details
-            - CouchDB: ${{ github.event.inputs.couchdb }}
-            - Erlang OTP: ${{ github.event.inputs.erlang }}
-            - Fauxton: ${{ github.event.inputs.fauxton }}
-
-            docker run -dit ghcr.io/${{ github.repository }}:${{ github.event.inputs.couchdb }}-r${{ github.event.inputs.release }}-tumbleweed
-          draft: false
-          prerelease: false
+          COUCHDB_VERSION: ${{ github.event.inputs.couchdb }}
+          ERLANG_VERSION: ${{ github.event.inputs.erlang }}
+          FAUXTON_VERSION: ${{ github.event.inputs.fauxton }}
+        run: |
+          echo -e "CouchDB build details\n- CouchDB: $COUCHDB_VERSION\n- Erlang OTP: $ERLANG_VERSION\n- Fauxton: $FAUXTON_VERSION\n" > rn
+          gh release create "$COUCHDB_VERSION-tumbleweed" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="$COUCHDB_VERSION-tumbleweed" \
+              --notes-file rn
