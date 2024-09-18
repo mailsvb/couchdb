@@ -1,3 +1,5 @@
+[![Build Docker Image](https://github.com/DE-MUC-UCC-OSEM/couchdb/actions/workflows/build-docker-image.yml/badge.svg)](https://github.com/DE-MUC-UCC-OSEM/couchdb/actions/workflows/build-docker-image.yml)
+
 ## Information
 CouchDB running in a minimal OpenSUSE Docker Image
 
