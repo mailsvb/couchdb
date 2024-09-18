@@ -98,9 +98,10 @@ jobs:
           COUCHDB_VERSION: ${{ github.event.inputs.couchdb }}
           ERLANG_VERSION: ${{ github.event.inputs.erlang }}
           FAUXTON_VERSION: ${{ github.event.inputs.fauxton }}
+          RELEASE_VERSION: ${{ github.event.inputs.release }}
         run: |
           echo -e "CouchDB build details\n- CouchDB: $COUCHDB_VERSION\n- Erlang OTP: $ERLANG_VERSION\n- Fauxton: $FAUXTON_VERSION\n" > rn
-          gh release create "$COUCHDB_VERSION-tumbleweed" \
+          gh release create "$COUCHDB_VERSION-r$RELEASE_VERSION-tumbleweed" \
               --repo="$GITHUB_REPOSITORY" \
-              --title="$COUCHDB_VERSION-tumbleweed" \
+              --title="$COUCHDB_VERSION-r$RELEASE_VERSION-tumbleweed" \
               --notes-file rn
